@@ -4,7 +4,7 @@ var Twitter = require('../index'),
 
 describe('Twitter.Tweets Functions:', function() {
   describe('Tweets loading', function() {
-    if('should create the Object', function() {
+    it('should create the Object', function() {
       var tweets = new Twitter.Tweets(config);
 
       tweets.should.be.an.instanceOf(Object);
