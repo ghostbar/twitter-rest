@@ -1,6 +1,7 @@
 var ttLite = require('twitter-rest-lite'),
     Timelines = require('./lib/timelines'),
     Tweets = require('./lib/tweets'),
+    Search = require('./lib/search'),
     uri = {
       base: 'https://api.twitter.com/1.1',
       search: 'https://api.twitter.com/1.1/search'
@@ -29,6 +30,7 @@ module.exports = function(opts) {
     OAuth: new ttLite.OAuth(uri, opts),
     Timelines: new Timelines(uri, opts),
     Tweets: new Tweets(uri, opts),
+    Search: new Search(uri, opts)
   }
 };
 
@@ -48,7 +50,6 @@ module.exports.Tweets = function(opts) {
   return new Tweets(uri, opts);
 };
 
-/*
 module.exports.Search = function(opts) {
+  return new Search(uri, opts);
 };
-*/
