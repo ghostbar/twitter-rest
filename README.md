@@ -9,6 +9,7 @@ Includes the convenience methods for:
 
 - Timelines
 - Tweets
+- Search
 
 Testing
 -------
