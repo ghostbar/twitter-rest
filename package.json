@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "request": "~2.27.0",
-    "twitter-rest-lite": "~0.1.3"
+    "twitter-rest-lite": "~0.2.0"
   },
   "devDependencies": {
     "mocha": "~1.13.0",
