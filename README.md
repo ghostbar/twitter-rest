@@ -1,7 +1,14 @@
-twitter-rest-lite
-=================
+twitter-rest
+============
 
-Yet another Twitter's API library for Node.js, yes. 
+Yet another Twitter's API library for Node.js, yes.
+
+Includes the core methods from [`twitter-rest-lite`](https://github.com/ghostbar/twitter-rest-lite).
+
+Includes the convenience methods for:
+
+- Timelines
+- Tweets
 
 Testing
 -------
@@ -25,13 +32,13 @@ Now run:
 Known Issues
 ------------
 
-- There's no testing for `api.proto.post()` and `oauth.proto.accessToken()`.
+- There's no testing for all the requests that require user context.
 
 Using
 -----
 
 ```js
-var Twitter = require('twitter-rest-lite'),
+var Twitter = require('twitter-rest'),
     keys,
     tt, ttoauth, ttapi;
 
