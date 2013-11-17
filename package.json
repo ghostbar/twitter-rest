@@ -1,6 +1,6 @@
 {
   "name": "twitter-rest",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Twitter's REST API",
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "request": "~2.27.0",
-    "twitter-rest-lite": "~0.2.0"
+    "twitter-rest-lite": "~0.2.1"
   },
   "devDependencies": {
     "mocha": "~1.13.0",
