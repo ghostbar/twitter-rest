@@ -20,15 +20,15 @@ In order to get testing done, first create the file `test/config.json` with the 
 {
   "consumer_key": "Your credential from Twitter's Developer Interface",
   "consumer_secret": "Your credential from Twitter's Developer Interface",
-  "access_token": "Your credential from Twitter's Developer Interface",
-  "access_token_secret": "Your credential from Twitter's Developer Interface",
-  "callback": "oob"
+  "token": "Your credential from Twitter's Developer Interface",
+  "token_secret": "Your credential from Twitter's Developer Interface",
+  "callback": "Either your callback URL or `oob` for Desktop Apps"
 }
 ```
 
 Now run:
 
-    make test
+    npm test
 
 Known Issues
 ------------
@@ -50,8 +50,8 @@ tt = new Twitter(keys);
 // Just Twitter's OAuth REST interface
 ttoauth = new Twitter.OAuth(keys);
 
-keys['access_token'] = '...';
-keys['access_token_secret'] = '...';
+keys['token'] = '...';
+keys['token_secret'] = '...';
 
 // Just Twitter's basic GET/POST interface
 ttapi = new Twitter.API(keys);
