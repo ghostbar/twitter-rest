@@ -15,8 +15,8 @@ var ttLite = require('twitter-rest-lite'),
  *
  *  consumer_key          - [Required]
  *  consumer_secret       - [Required]
- *  access_token_key      - [Optional]
- *  access_token_secret   - [Optional, but required if `access_token_key` was given]
+ *  token                 - [Optional]
+ *  token_secret          - [Optional, but required if `token` was given]
  *
  *  The main will export all the functions implemented.
  *
