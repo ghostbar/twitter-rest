@@ -96,8 +96,20 @@ describe('Twitter.Tweets Functions:', function() {
       });
     });
 
-    it('Success call should be implemented, not yet', function() {
-      console.log('TODO: TO BE IMPLEMENTED!');
+    it('Should send a tweet', function(done) {
+      this.timeout(40000);
+      tweets.update({
+        status: "123... This is a test"
+      }, function(err, response) {
+        should.not.exist(err);
+
+        should.exist(response);
+
+        should.exist(response.id);
+
+        done();
+      });
+
     });
   });
 
