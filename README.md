@@ -1,6 +1,10 @@
 twitter-rest
 ============
 
+[![NPM](https://nodei.co/npm/twitter-rest.png?stars&downloads)](https://nodei.co/npm/twitter-rest/)
+
+[![NPM](https://nodei.co/npm-dl/twitter-rest.png)](https://nodei.co/npm/twitter-rest/)
+
 Yet another Twitter's API library for Node.js, yes.
 
 Includes the core methods from [`twitter-rest-lite`](https://github.com/ghostbar/twitter-rest-lite).
