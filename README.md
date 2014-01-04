@@ -39,8 +39,8 @@ Known Issues
 
 - There's no testing for all the requests that require user context.
 
-Using
------
+Quick usage guide
+-----------------
 
 ```js
 var Twitter = require('twitter-rest'),
