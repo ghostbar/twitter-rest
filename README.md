@@ -18,7 +18,7 @@ Includes the convenience methods for:
 Testing
 -------
 
-In order to get testing done, first create the file `test/config.json` with the following format:
+In order to run tests, first create the file `test/config.json` with the following format:
 
 ```js
 {
