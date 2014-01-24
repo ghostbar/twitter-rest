@@ -18,14 +18,14 @@
     "url": "https://github.com/ghostbar/twitter-rest"
   },
   "dependencies": {
-    "request": "~2.31.0",
-    "twitter-rest-lite": "~0.3.3"
+    "request": "~2.33.0",
+    "twitter-rest-lite": "~0.3.4"
   },
   "devDependencies": {
-    "mocha": "~1.17.0",
-    "should": "~2.1.1"
+    "mocha": "~1.17.1",
+    "should": "~3.1.0"
   },
   "engines": {
-    "node": ">=0.10.21"
+    "node": ">=0.10.25"
   }
 }
