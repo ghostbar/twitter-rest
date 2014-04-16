@@ -23,6 +23,8 @@ describe('Twitter.Search Functions:', function() {
     });
 
     it('should return an Object with statuses', function(done) {
+      this.timeout(40000);
+
       search.query({q: 'hola', count: 2}, function(err, response) {
         should.not.exist(err);
 
