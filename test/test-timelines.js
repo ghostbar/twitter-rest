@@ -14,7 +14,7 @@ describe('Twitter.Timelines Functions:', function () {
     it('should create the Object', function () {
       var timelines = new Twitter.Timelines(config);
 
-      should.exist(timelines.Timelines);
+      should.exist(timelines.mentions);
 
       timelines.should.be.an.instanceOf(Object);
     });
