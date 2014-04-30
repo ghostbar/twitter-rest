@@ -24,7 +24,7 @@ describe('Twitter.Tweets Functions:', function() {
     };
 
     it('should return an error about missing id', function(done) {
-      tweets.retweets(null, params, function(err, response) {
+      tweets.retweets(null, params, function(err) {
         should.exist(err);
 
         done();
@@ -37,7 +37,7 @@ describe('Twitter.Tweets Functions:', function() {
     var tweets = new Twitter.Tweets(config);
 
     it('should return an error about missing id', function(done) {
-      tweets.show(null, null, function(err, response) {
+      tweets.show(null, null, function(err) {
         should.exist(err);
 
         done();
@@ -50,7 +50,7 @@ describe('Twitter.Tweets Functions:', function() {
     var tweets = new Twitter.Tweets(config);
 
     it('should return an error about missing id', function(done) {
-      tweets.destroy(null, null, function(err, response) {
+      tweets.destroy(null, null, function(err) {
         should.exist(err);
 
         done();
@@ -63,7 +63,7 @@ describe('Twitter.Tweets Functions:', function() {
     var tweets = new Twitter.Tweets(config);
 
     it('should return an error about missing status on params', function(done) {
-      tweets.update({}, function(err, response) {
+      tweets.update({}, function(err) {
         should.exist(err);
 
         done();
