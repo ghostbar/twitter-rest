@@ -3,7 +3,9 @@
 'use strict';
 
 var Twitter = require('../index');
-var config = require('./config.json');
+var optional = require('optional');
+var optConfig = {consumer_key: 'random', consumer_secret: 'random', token: 'random', token_secret: 'random'};
+var config = optional('./config.json') || optConfig;
 var should = require('should');
 
 describe('Twitter.Tweets Functions:', function() {
