@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>twitter-rest</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="public/stylesheets/normalize.css" />
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="page">
+
+      <div class="header">
+        
+          
+          <h1 id="twitter-rest">twitter-rest</h1>
+
+          
+        
+
+        
+          <div class="toc">
+            <h3>Table of Contents</h3>
+            <ol>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="search.html">
+                    search.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="timelines.html">
+                    timelines.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="tweets.html">
+                    tweets.js
+                  </a>
+                </li>
+              
+            </ol>
+          </div>
+        
+      </div>
+
+      
+        
+        <p>A (work-in-progress) Twitter REST-API library.</p>
+<p>It depends on <a href="https://github.com/ghostbar/twitter-rest-lite"><code>twitter-rest-lite</code></a>
+for the basic API and OAuth requests.</p>
+
+        
+          <div class='highlight'><pre>
+
+<span class="hljs-keyword">var</span> ttLite = <span class="hljs-built_in">require</span>(<span class="hljs-string">'twitter-rest-lite'</span>),
+    Timelines = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./lib/timelines'</span>),
+    Tweets = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./lib/tweets'</span>),
+    Search = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./lib/search'</span>),
+    uri = {
+      base: <span class="hljs-string">'https://api.twitter.com/1.1'</span>,
+      search: <span class="hljs-string">'https://api.twitter.com/1.1/search'</span>
+};</pre></div>
+        
+      
+        
+        <h2 id="quick-usage">Quick Usage</h2>
+
+        
+      
+        
+        <pre><code><span class="hljs-keyword">var</span> TwitterLib = <span class="hljs-built_in">require</span>(<span class="hljs-string">'twitter-rest'</span>),
+    twitter = <span class="hljs-keyword">new</span> TwitterLib({
+      consumer_key: <span class="hljs-string">'...'</span>,
+      consumer_secret: <span class="hljs-string">'...'</span>,
+      token: <span class="hljs-string">'...'</span>,
+      token_secret: <span class="hljs-string">'...'</span>
+    });
+
+ twitter.search.query({
+   q: <span class="hljs-string">'Hello'</span>,
+   count: <span class="hljs-number">2</span>
+ });
+</code></pre><h4 id="please-be-warned">PLEASE BE WARNED</h4>
+<p>Using the complete <code>require</code> is only recommended if <code>token</code> and
+<code>token_secret</code> already exists.</p>
+<p>Otherwise the API module will throw an Error since it does need those
+two variables to do any of the calls.</p>
+<h2 id="what-s-available-on-the-initialized-object-">What’s available on the initialized object?</h2>
+
+        
+      
+        
+        <ul>
+<li>API</li>
+<li>OAuth</li>
+<li>Timelines</li>
+<li>Tweets</li>
+<li>Search</li>
+</ul>
+<h2 id="parameters-to-initialize-any-of-the-objects-modules">Parameters to initialize any of the Objects/Modules</h2>
+
+        
+      
+        
+        <ul>
+<li><code>consumer_key</code>          - [Required]</li>
+<li><code>consumer_secret</code>       - [Required]</li>
+<li><code>token</code>                 - [Optional]</li>
+<li><code>token_secret</code>          - [Optional, but required if <code>token</code> was given]</li>
+</ul>
+<h4 id="code">Code</h4>
+
+        
+          <div class='highlight'><pre>module.exports = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(opts)</span> {</span>
+  <span class="hljs-keyword">return</span> {
+    API: <span class="hljs-keyword">new</span> ttLite.API(uri, opts),
+    OAuth: <span class="hljs-keyword">new</span> ttLite.OAuth(uri, opts),
+    Timelines: <span class="hljs-keyword">new</span> Timelines(uri, opts),
+    Tweets: <span class="hljs-keyword">new</span> Tweets(uri, opts),
+    Search: <span class="hljs-keyword">new</span> Search(uri, opts)
+  }
+};
+
+module.exports.OAuth = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(opts)</span> {</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ttLite.OAuth(uri, opts);
+};
+
+module.exports.API = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(opts)</span> {</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ttLite.API(uri, opts);
+};
+
+module.exports.Timelines = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(opts)</span> {</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Timelines(uri, opts);
+};
+
+module.exports.Tweets = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(opts)</span> {</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Tweets(uri, opts);
+};
+
+module.exports.Search = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(opts)</span> {</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Search(uri, opts);
+};</pre></div>
+        
+      
+      <div class="fleur">h</div>
+    </div>
+  </div>
+</body>
+</html>
