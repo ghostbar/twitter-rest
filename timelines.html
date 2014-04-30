@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>timelines.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="public/stylesheets/normalize.css" />
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="page">
+
+      <div class="header">
+        
+          <h1>timelines.js</h1>
+        
+
+        
+          <div class="toc">
+            <h3>Table of Contents</h3>
+            <ol>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="search.html">
+                    search.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="timelines.html">
+                    timelines.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="tweets.html">
+                    tweets.js
+                  </a>
+                </li>
+              
+            </ol>
+          </div>
+        
+      </div>
+
+      
+        
+        
+        
+          <div class='highlight'><pre><span class="hljs-pi">'use strict'</span>;</pre></div>
+        
+      
+        
+        <h1 id="module-timelines">Module: Timelines</h1>
+
+        
+      
+        
+        <p>Convenience methods for Timelines actions.</p>
+<h2 id="methods">Methods</h2>
+
+        
+      
+        
+        <ul>
+<li><a href="#constructor">Constructor/Initialize</a></li>
+<li><a href="#mentions">User’s Mentions</a></li>
+<li><a href="#user">User’s Timeline</a></li>
+<li><a href="#home">User’s Home Timeline</a></li>
+<li><a href="#retweets">User’s retweets Timeline</a></li>
+</ul>
+<h2 id="usage">Usage</h2>
+
+        
+      
+        
+        <pre><code class="lang-js"><span class="hljs-keyword">var</span> TwitterLib = <span class="hljs-built_in">require</span>(<span class="hljs-string">'twitter-rest'</span>);
+<span class="hljs-keyword">var</span> timeline = <span class="hljs-keyword">new</span> TwitterLib.Timelines(var_with_config);
+
+timeline.mentions(params, callback);
+timeline.user(params, callback);
+timeline.home(params, callback);
+timeline.retweets(params, callback);
+</code></pre>
+<p><a name='constructor'></a></p>
+<h2 id="constructor">Constructor</h2>
+
+        
+      
+        
+        <h4 id="parameters">Parameters</h4>
+<ul>
+<li><code>uri</code>    - base URI’s to use (this should be provided by the library
+itself)</li>
+<li><code>opts</code>   - <code>Object</code> with the user-provided params<ul>
+<li><code>consumer_key</code> - required</li>
+<li><code>consumer_secret</code> - required</li>
+<li><code>token</code> - required</li>
+<li><code>token_secret</code> - required</li>
+</ul>
+</li>
+</ul>
+<h4 id="returns">Returns</h4>
+<p>An <code>Object</code> with methods <code>mentions</code>, <code>user</code>, <code>home</code> and <code>retweets</code>.</p>
+<h4 id="code">Code</h4>
+
+        
+          <div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Timelines</span><span class="hljs-params">(uri, opts)</span> {</span>
+  <span class="hljs-keyword">this</span>.uri = uri;
+  <span class="hljs-keyword">this</span>.opts = opts;
+
+  <span class="hljs-keyword">var</span> tt = <span class="hljs-built_in">require</span>(<span class="hljs-string">'twitter-rest-lite'</span>);
+
+  <span class="hljs-keyword">this</span>.api = tt.API(<span class="hljs-keyword">this</span>.opts);
+}</pre></div>
+        
+      
+        
+        <p><a name='mentions'></a></p>
+<h2 id="public-get-user-s-mentions">Public: get user’s mentions</h2>
+
+        
+      
+        
+        <p>This only works with <code>oauth_token</code> from the same user.</p>
+<h4 id="parameters">Parameters</h4>
+<ul>
+<li><code>params</code>            - Object with params:<ul>
+<li><code>count</code></li>
+<li><code>since_id</code></li>
+<li><code>max_id</code></li>
+<li><code>trim_user</code></li>
+<li><code>contributor_details</code></li>
+<li><code>include_entities</code></li>
+</ul>
+</li>
+<li><code>callback</code>          - Callback Function</li>
+</ul>
+<h4 id="returns">Returns</h4>
+<p>Returns a callback with an Error object as first parameter if there was any
+(otherwise just <code>null</code>) and an Array with tweets as second parameter.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> params = { count: <span class="hljs-number">1</span> };
+timeline.mentions(params, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(err, res)</span> {</span>
+  <span class="hljs-keyword">if</span> (err)
+    <span class="hljs-keyword">throw</span> err;
+
+  console.log(res);
+});
+</code></pre>
+<h4 id="code">Code</h4>
+
+        
+          <div class='highlight'><pre>Timelines.prototype.mentions = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(params, callback)</span> {</span>
+  <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
+
+  <span class="hljs-keyword">if</span> (params == <span class="hljs-literal">null</span>)
+    params = {};
+
+  self.api.get(<span class="hljs-string">'/statuses/mentions_timeline.json'</span>, params, callback);
+};</pre></div>
+        
+      
+        
+        <p><a name='user'></a></p>
+<h2 id="public-get-selected-user-s-timeline">Public: get selected user’s timeline</h2>
+
+        
+      
+        
+        <h4 id="parameters">Parameters</h4>
+<ul>
+<li><code>params</code>            - Object with params:<ul>
+<li><code>screen_name</code> - [Required if <code>user_id</code> wasn’t provided]</li>
+<li><code>user_id</code> - [Required if <code>screen_name</code> wasn’t provided]</li>
+<li><code>since_id</code></li>
+<li><code>count</code></li>
+<li><code>max_id</code></li>
+<li><code>trim_user</code></li>
+<li><code>exclude_replies</code></li>
+<li><code>contributor_details</code></li>
+<li><code>include_rts</code></li>
+</ul>
+</li>
+<li><code>callback</code>          - Callback Function</li>
+</ul>
+<h4 id="returns">Returns</h4>
+<p>Returns a callback with an Error object as first parameter if there was any
+(otherwise just <code>null</code>) and an Array with tweets as second parameter.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">timeline.user({
+  screen_name: <span class="hljs-string">'random'</span>
+}, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(err, res)</span> {</span>
+  <span class="hljs-keyword">if</span> (err)
+    <span class="hljs-keyword">throw</span> err;
+
+  console.log(res);
+});
+</code></pre>
+<h4 id="code">Code</h4>
+
+        
+          <div class='highlight'><pre>Timelines.prototype.user = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(params, callback)</span> {</span>
+  <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
+
+  <span class="hljs-keyword">if</span> ((params.screen_name == <span class="hljs-literal">null</span>) &amp;&amp; (params.user_id == <span class="hljs-literal">null</span>)) {
+    <span class="hljs-keyword">return</span> callback(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(
+      <span class="hljs-string">'Twitter:Timelines.user requires either screen_name or user_id'</span>
+    ));
+  }
+
+  self.api.get(<span class="hljs-string">'/statuses/user_timeline.json'</span>, params, callback);
+};</pre></div>
+        
+      
+        
+        <p><a name='home'></a></p>
+<h2 id="public-get-user-s-home-timeline">Public: get user’s home timeline</h2>
+
+        
+      
+        
+        <p>This only works with the <code>oauth_token</code> from the same user.</p>
+<h4 id="parameters">Parameters</h4>
+<ul>
+<li><code>params</code>            - Object with params:<ul>
+<li><code>count</code></li>
+<li><code>since_id</code></li>
+<li><code>max_id</code></li>
+<li><code>trim_user</code></li>
+<li><code>exclude_replies</code></li>
+<li><code>contributor_details</code></li>
+<li><code>include_entities</code></li>
+</ul>
+</li>
+<li><code>callback</code>          - Callback Function</li>
+</ul>
+<h4 id="returns">Returns</h4>
+<p>Returns a callback with an Error object as first parameter if there was any
+(otherwise just <code>null</code>) and an Array with tweets as second parameter.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">timeline.home(<span class="hljs-literal">null</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(err, res)</span> {</span>
+  <span class="hljs-keyword">if</span> (err)
+    <span class="hljs-keyword">throw</span> err;
+
+  console.log(res);
+});
+</code></pre>
+<h4 id="code">Code</h4>
+
+        
+          <div class='highlight'><pre>Timelines.prototype.home = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(params, callback)</span> {</span>
+  <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
+
+  <span class="hljs-keyword">if</span> (params == <span class="hljs-literal">null</span>)
+    params = {};
+
+  self.api.get(<span class="hljs-string">'/statuses/home_timeline.json'</span>, params, callback);
+};</pre></div>
+        
+      
+        
+        <p><a name='retweets'></a></p>
+<h2 id="public-get-user-s-retweets">Public: get user’s retweets</h2>
+
+        
+      
+        
+        <p>This only works with the <code>oauth_token</code> from the same user.</p>
+<h4 id="parameters">Parameters</h4>
+<ul>
+<li><code>params</code>              - Object with params:<ul>
+<li><code>count</code></li>
+<li><code>since_id</code></li>
+<li><code>max_id</code></li>
+<li><code>trim_user</code></li>
+<li><code>include_entities</code></li>
+<li><code>include_user_entities</code></li>
+</ul>
+</li>
+<li><code>callback</code>            - Callback Function</li>
+</ul>
+<h4 id="returns">Returns</h4>
+<p>Returns a callback with an Error object as first parameter if there was any
+(otherwise just <code>null</code>) and an Array with tweets as second parameter.</p>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js">timeline.retweets({}, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(err, response)</span> {</span>
+  <span class="hljs-keyword">if</span> (err)
+    <span class="hljs-keyword">throw</span> err;
+
+  console.log(response);
+});
+</code></pre>
+<h4 id="code">Code</h4>
+
+        
+          <div class='highlight'><pre>Timelines.prototype.retweets = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(params, callback)</span> {</span>
+  <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
+
+  <span class="hljs-keyword">if</span> (params == <span class="hljs-literal">null</span>)
+    params = {};
+
+  self.api.get(<span class="hljs-string">'/statuses/retweets_of_me.json'</span>, params, callback);
+};
+
+module.exports = Timelines;</pre></div>
+        
+      
+      <div class="fleur">h</div>
+    </div>
+  </div>
+</body>
+</html>

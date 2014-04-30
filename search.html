@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>search.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="public/stylesheets/normalize.css" />
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="page">
+
+      <div class="header">
+        
+          <h1>search.js</h1>
+        
+
+        
+          <div class="toc">
+            <h3>Table of Contents</h3>
+            <ol>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="search.html">
+                    search.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="timelines.html">
+                    timelines.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="tweets.html">
+                    tweets.js
+                  </a>
+                </li>
+              
+            </ol>
+          </div>
+        
+      </div>
+
+      
+        
+        
+        
+          <div class='highlight'><pre><span class="hljs-pi">'use strict'</span>;</pre></div>
+        
+      
+        
+        <h1 id="module-search">Module: Search</h1>
+
+        
+      
+        
+        <p>Convenience method for searches.</p>
+<h2 id="methods">Methods</h2>
+
+        
+      
+        
+        <ul>
+<li><a href="#constructor">Constructor/Initialize</a></li>
+<li><a href="#query">Search query</a></li>
+</ul>
+<h2 id="usage">Usage</h2>
+
+        
+      
+        
+        <pre><code class="lang-js"><span class="hljs-keyword">var</span> TwitterLib = <span class="hljs-built_in">require</span>(<span class="hljs-string">'twitter-rest'</span>);
+<span class="hljs-keyword">var</span> search = <span class="hljs-keyword">new</span> TwitterLib.Search(var_with_config);
+
+<span class="hljs-keyword">var</span> params = {
+  q: <span class="hljs-string">'term I\'m searching for'</span>
+};
+
+search.query(params, callback);
+</code></pre>
+<h4 id="code">Code</h4>
+
+        
+          <div class='highlight'><pre><span class="hljs-keyword">var</span> Search;
+
+module.exports = Search = (<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span></pre></div>
+        
+      
+        
+        <p><a name='constructor'></a></p>
+<h2 id="constructor">Constructor</h2>
+
+        
+      
+        
+        <h4 id="parameters">Parameters</h4>
+<ul>
+<li><code>uri</code> - base URI’s to use (this should be provided by the library itself)</li>
+<li><code>opts</code> - <code>Object</code> with the user-provided params<ul>
+<li><code>consumer_key</code> - required</li>
+<li><code>consumer_secret</code> - required</li>
+<li><code>token</code> - required</li>
+<li><code>token_secret</code> - required</li>
+</ul>
+</li>
+</ul>
+<h4 id="returns">Returns</h4>
+<p>An <code>Object</code> with the method <code>query</code>.</p>
+<h4 id="code">Code</h4>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Search</span><span class="hljs-params">(uri, opts)</span> {</span>
+    <span class="hljs-keyword">this</span>.uri = uri;
+    <span class="hljs-keyword">this</span>.opts = opts;
+
+    <span class="hljs-keyword">var</span> tt = <span class="hljs-built_in">require</span>(<span class="hljs-string">'twitter-rest-lite'</span>);
+
+    <span class="hljs-keyword">this</span>.api = tt.API(<span class="hljs-keyword">this</span>.opts);
+  }</pre></div>
+        
+      
+        
+        <p><a name='query'></a></p>
+<h2 id="public-do-a-tweets-query">Public: do a tweets query</h2>
+
+        
+      
+        
+        <h4 id="parameters">Parameters</h4>
+<ul>
+<li><code>params</code>              - Object with params:<ul>
+<li><code>q</code>: [Required]</li>
+</ul>
+</li>
+<li><code>callback</code>            - Callback Function</li>
+</ul>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> q = {
+  q: <span class="hljs-string">'term for the search'</span>
+};
+
+search.query(q, callback);
+</code></pre>
+<h4 id="code">Code</h4>
+
+        
+          <div class='highlight'><pre>  Search.prototype.query = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(params, callback)</span> {</span>
+    <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
+
+    <span class="hljs-keyword">if</span> (params.q == <span class="hljs-literal">null</span>) {
+      <span class="hljs-keyword">return</span> callback(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(
+        <span class="hljs-string">'Twitter:Search.query() requires q to be defined in the params'</span>
+      ));
+    }
+
+    self.api.get(<span class="hljs-string">'/search/tweets.json'</span>, params, callback);
+  };
+
+  <span class="hljs-keyword">return</span> Search;
+})();</pre></div>
+        
+      
+      <div class="fleur">h</div>
+    </div>
+  </div>
+</body>
+</html>

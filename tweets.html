@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>tweets.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="public/stylesheets/normalize.css" />
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="page">
+
+      <div class="header">
+        
+          <h1>tweets.js</h1>
+        
+
+        
+          <div class="toc">
+            <h3>Table of Contents</h3>
+            <ol>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="search.html">
+                    search.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="timelines.html">
+                    timelines.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="tweets.html">
+                    tweets.js
+                  </a>
+                </li>
+              
+            </ol>
+          </div>
+        
+      </div>
+
+      
+        
+        
+        
+          <div class='highlight'><pre><span class="hljs-pi">'use strict'</span>;</pre></div>
+        
+      
+        
+        <h1 id="module-tweets">Module: Tweets</h1>
+
+        
+      
+        
+        <p>Convenience methods for Tweets actions directly from <a href="https://dev.twitter.com/docs/api/1.1#111">Twitter’s API 1.1</a>.</p>
+<ul>
+<li><a href="#show">Show</a></li>
+<li><a href="#destroy">Destroy</a></li>
+<li><a href="#update">Update</a></li>
+<li><a href="#retweet">retweet</a></li>
+<li><a href="#updateWithMedia">Update with Media</a></li>
+<li><a href="#oembed">O Embed</a></li>
+<li><a href="#retweeters">Retweeters</a></li>
+</ul>
+<h4 id="code">Code</h4>
+
+        
+          <div class='highlight'><pre><span class="hljs-keyword">var</span> Tweets;
+
+module.exports = Tweets = (<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span></pre></div>
+        
+      
+        
+        <p><a name='constructor'></a></p>
+<h2 id="constructor">Constructor</h2>
+
+        
+      
+        
+        <h4 id="code">Code</h4>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Tweets</span><span class="hljs-params">(uri, opts)</span> {</span>
+    <span class="hljs-keyword">this</span>.uri = uri;
+    <span class="hljs-keyword">this</span>.opts = opts;
+
+    <span class="hljs-keyword">var</span> tt = <span class="hljs-built_in">require</span>(<span class="hljs-string">'twitter-rest-lite'</span>);
+
+    <span class="hljs-keyword">this</span>.api = tt.API(<span class="hljs-keyword">this</span>.opts);
+  }</pre></div>
+        
+      
+        
+        <p><a name='retweets'></a></p>
+<h2 id="public-returns-a-collection-of-the-100-most-recent-retweets-on-specified-tweet">Public: returns a collection of the 100 most recent retweets on specified tweet</h2>
+
+        
+      
+        
+        <h4 id="parameters">Parameters</h4>
+<ul>
+<li><strong>id</strong>: Status ID</li>
+<li><strong>params</strong>: Object with params:<ul>
+<li><strong>count</strong></li>
+<li><strong>trim_user</strong></li>
+</ul>
+</li>
+<li><strong>callback</strong>: Callback Function</li>
+</ul>
+<h4 id="returns">Returns</h4>
+<p>A callback with an Error object as first parameter if there was any
+(otherwise just <code>null</code>) and an Array with tweets as second parameter.</p>
+<h4 id="code">Code</h4>
+
+        
+          <div class='highlight'><pre>  Tweets.prototype.retweets = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(id, params, callback)</span> {</span>
+    <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
+
+    <span class="hljs-keyword">if</span> (id == <span class="hljs-literal">null</span>) {
+      <span class="hljs-keyword">return</span> callback(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(
+        <span class="hljs-string">'Twitter:Tweets.retweets() requires an ID to be provided'</span>
+      ));
+    }
+
+    self.api.get(<span class="hljs-string">'/statuses/retweets/'</span> + id + <span class="hljs-string">'.json'</span>, params, callback);
+  };</pre></div>
+        
+      
+        
+        <p><a name='show'></a></p>
+<h2 id="public-returns-a-single-tweet">Public: returns a single tweet</h2>
+
+        
+      
+        
+        <h4 id="parameters">Parameters</h4>
+<ul>
+<li>id                  - Status ID</li>
+<li>params              - Object with params:<ul>
+<li>trim_user</li>
+<li>include_my_retweet</li>
+<li>include_entities</li>
+</ul>
+</li>
+<li>callback            - Callback Function</li>
+</ul>
+<h4 id="returns">Returns</h4>
+<p>Returns a callback with an Error object as first parameter if there was any
+(otherwise just <code>null</code>) and a Tweet object as second parameter.</p>
+<h4 id="code">Code</h4>
+
+        
+          <div class='highlight'><pre>  Tweets.prototype.show = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(id, params, callback)</span> {</span>
+    <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
+
+    <span class="hljs-keyword">if</span> (id == <span class="hljs-literal">null</span>) {
+      <span class="hljs-keyword">return</span> callback(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(
+        <span class="hljs-string">'Twitter:Tweets.show() requires and ID to be provided'</span>
+      ));
+    }
+
+    self.api.get(<span class="hljs-string">'/statuses/show/'</span> + id + <span class="hljs-string">'.json'</span>, params, callback);
+  };</pre></div>
+        
+      
+        
+        <p><a name='destroy'></a></p>
+<h2 id="public-destroy-a-single-tweet">Public: destroy a single tweet</h2>
+
+        
+      
+        
+        <p>This only works with <code>oauth_token</code> from the same user.</p>
+<h4 id="parameters">Parameters</h4>
+<ul>
+<li>id                  - Status ID</li>
+<li>params              - Object with params:<ul>
+<li>trim_user</li>
+</ul>
+</li>
+<li>callback            - Callback Function</li>
+</ul>
+<h4 id="returns">Returns</h4>
+<p>Returns a callback with an Error object as first parameter if there was any
+(otherwise just <code>null</code>) and a Tweet object of the removed status as second
+parameter.</p>
+<h4 id="code">Code</h4>
+
+        
+          <div class='highlight'><pre>  Tweets.prototype.destroy = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(id, params, callback)</span> {</span>
+    <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
+
+    <span class="hljs-keyword">if</span> (id == <span class="hljs-literal">null</span>) {
+      <span class="hljs-keyword">return</span> callback(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(
+        <span class="hljs-string">'Twitter:Tweets.destroy() requires an ID to be provided'</span>
+      ));
+    }
+
+    self.api.post(<span class="hljs-string">'/statuses/destroy/'</span> + id + <span class="hljs-string">'.json'</span>, params, callback);
+  };</pre></div>
+        
+      
+        
+        <p><a name='update'></a></p>
+<h2 id="public-creates-a-tweet">Public: creates a tweet</h2>
+
+        
+      
+        
+        <p>This only works with <code>oauth_token</code> from the same user.</p>
+<h4 id="parameters">Parameters</h4>
+<ul>
+<li>params              - Object with params:<ul>
+<li>status: [Required]</li>
+</ul>
+</li>
+<li>callback            - Callback Function</li>
+</ul>
+<h4 id="code">Code</h4>
+
+        
+          <div class='highlight'><pre>  Tweets.prototype.update = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(params, callback)</span> {</span>
+    <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
+
+    <span class="hljs-keyword">if</span> ((params == <span class="hljs-literal">null</span>) || (params.status == <span class="hljs-literal">null</span>) || (params.status === <span class="hljs-string">''</span>)) {
+      <span class="hljs-keyword">return</span> callback(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(
+        <span class="hljs-string">'Twitter:Tweets.update() requires params.status to be defined'</span>
+      ));
+    }
+
+    <span class="hljs-keyword">if</span> (params.status.length &gt; <span class="hljs-number">140</span>) {
+      <span class="hljs-keyword">return</span> callback(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(
+        <span class="hljs-string">'Twitter:Tweets.update(): status is longer than 140 characters'</span>
+      ));
+    }
+
+    self.api.post(<span class="hljs-string">'/statuses/update.json'</span>, params, callback);
+  };</pre></div>
+        
+      
+        
+        <p><a name='retweet'></a></p>
+<h2 id="public-retweets-an-status">Public: retweets an status</h2>
+
+        
+      
+        
+        <h4 id="parameters">Parameters</h4>
+<ul>
+<li>id                    - ID of the status to be retweeted</li>
+<li>params                - Object with params:</li>
+<li>callback              - Callback Function</li>
+</ul>
+<h4 id="code">Code</h4>
+
+        
+          <div class='highlight'><pre>  Tweets.prototype.retweet = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(id, params, callback)</span> {</span>
+    <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
+
+    <span class="hljs-keyword">if</span> (id == <span class="hljs-literal">null</span>) {
+      <span class="hljs-keyword">return</span> callback(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(
+        <span class="hljs-string">'Twitter:Tweets.retweet() requires an ID to be provided'</span>
+      ));
+    }
+
+    self.api.post(<span class="hljs-string">'/statuses/retweet/'</span> + id + <span class="hljs-string">'.json'</span>, params, callback);
+  };</pre></div>
+        
+      
+        
+        <p><a name='updateWithMedia'></a></p>
+<h2 id="todo-public-update-with-media">TODO: Public: update with media</h2>
+
+        
+      
+        
+        <h4 id="code">Code</h4>
+
+        
+          <div class='highlight'><pre>  Tweets.prototype.updateWithMedia = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+    <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
+
+    <span class="hljs-comment">/* FIXME: IMPLEMENT! */</span>
+  };</pre></div>
+        
+      
+        
+        <p><a name='oembed'></a></p>
+<h2 id="public-returns-html-for-embedding-tweets-in-websites">Public: returns HTML for embedding tweets in websites</h2>
+
+        
+      
+        
+        <ul>
+<li><code>params</code>                  - Object with params:<ul>
+<li><code>id</code>: [Required if <code>url</code> is not given]</li>
+<li><code>url</code>: [Required if <code>id</code> is not given]</li>
+</ul>
+</li>
+<li><code>callback</code>                - Callback Function</li>
+</ul>
+<h4 id="code">Code</h4>
+
+        
+          <div class='highlight'><pre>  Tweets.prototype.oembed = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(params, callback)</span> {</span>
+    <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
+
+    <span class="hljs-keyword">if</span> ((params.id == <span class="hljs-literal">null</span>) &amp;&amp; (params.url == <span class="hljs-literal">null</span>)) {
+      <span class="hljs-keyword">return</span> callback(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(
+        <span class="hljs-string">'Twitter:Tweets.oembed() requires either id or url on the params'</span>
+      ));
+    }
+
+    self.api.get(<span class="hljs-string">'/statuses/oembed.json'</span>, params, callback);
+  };</pre></div>
+        
+      
+        
+        <p><a name='retweeters'></a></p>
+<h2 id="public-get-a-list-of-retweeters-by-id">Public: get a list of retweeters by ID</h2>
+
+        
+      
+        
+        <ul>
+<li><code>params</code>                    - Object with params:<ul>
+<li><code>id</code></li>
+</ul>
+</li>
+<li><code>callback</code>                  - Callback Function</li>
+</ul>
+<h4 id="code">Code</h4>
+
+        
+          <div class='highlight'><pre>  Tweets.prototype.retweeters = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(params, callback)</span> {</span>
+    <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
+
+    <span class="hljs-keyword">if</span> (params.id == <span class="hljs-literal">null</span>) {
+      <span class="hljs-keyword">return</span> callback(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(
+        <span class="hljs-string">'Twitter:Tweets.retweeters() requires an id on the params'</span>
+      ));
+    }
+
+    self.api.get(<span class="hljs-string">'/statuses/retweeters/ids.json'</span>, params, callback);
+  };
+
+  <span class="hljs-keyword">return</span> Tweets;
+})();</pre></div>
+        
+      
+      <div class="fleur">h</div>
+    </div>
+  </div>
+</body>
+</html>
