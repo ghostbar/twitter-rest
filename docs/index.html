@@ -20,41 +20,6 @@
         
 
         
-          <div class="toc">
-            <h3>Table of Contents</h3>
-            <ol>
-              
-                
-                <li>
-                  <a class="source" href="index.html">
-                    index.js
-                  </a>
-                </li>
-              
-                
-                <li>
-                  <a class="source" href="search.html">
-                    search.js
-                  </a>
-                </li>
-              
-                
-                <li>
-                  <a class="source" href="timelines.html">
-                    timelines.js
-                  </a>
-                </li>
-              
-                
-                <li>
-                  <a class="source" href="tweets.html">
-                    tweets.js
-                  </a>
-                </li>
-              
-            </ol>
-          </div>
-        
       </div>
 
       
@@ -125,7 +90,7 @@ two variables to do any of the calls.</p>
 <h4 id="code">Code</h4>
 
         
-          <div class='highlight'><pre>module.exports = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(opts)</span> {</span>
+          <div class='highlight'><pre><span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(opts)</span> </span>{
   <span class="hljs-keyword">return</span> {
     API: <span class="hljs-keyword">new</span> ttLite.API(uri, opts),
     OAuth: <span class="hljs-keyword">new</span> ttLite.OAuth(uri, opts),
@@ -135,23 +100,23 @@ two variables to do any of the calls.</p>
   }
 };
 
-module.exports.OAuth = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(opts)</span> {</span>
+<span class="hljs-built_in">module</span>.exports.OAuth = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(opts)</span> </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ttLite.OAuth(uri, opts);
 };
 
-module.exports.API = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(opts)</span> {</span>
+<span class="hljs-built_in">module</span>.exports.API = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(opts)</span> </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ttLite.API(uri, opts);
 };
 
-module.exports.Timelines = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(opts)</span> {</span>
+<span class="hljs-built_in">module</span>.exports.Timelines = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(opts)</span> </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Timelines(uri, opts);
 };
 
-module.exports.Tweets = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(opts)</span> {</span>
+<span class="hljs-built_in">module</span>.exports.Tweets = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(opts)</span> </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Tweets(uri, opts);
 };
 
-module.exports.Search = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(opts)</span> {</span>
+<span class="hljs-built_in">module</span>.exports.Search = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(opts)</span> </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Search(uri, opts);
 };</pre></div>
         

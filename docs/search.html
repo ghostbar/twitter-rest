@@ -17,41 +17,6 @@
         
 
         
-          <div class="toc">
-            <h3>Table of Contents</h3>
-            <ol>
-              
-                
-                <li>
-                  <a class="source" href="index.html">
-                    index.js
-                  </a>
-                </li>
-              
-                
-                <li>
-                  <a class="source" href="search.html">
-                    search.js
-                  </a>
-                </li>
-              
-                
-                <li>
-                  <a class="source" href="timelines.html">
-                    timelines.js
-                  </a>
-                </li>
-              
-                
-                <li>
-                  <a class="source" href="tweets.html">
-                    tweets.js
-                  </a>
-                </li>
-              
-            </ol>
-          </div>
-        
       </div>
 
       
@@ -96,7 +61,7 @@ search.query(params, callback);
         
           <div class='highlight'><pre><span class="hljs-keyword">var</span> Search;
 
-module.exports = Search = (<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span></pre></div>
+<span class="hljs-built_in">module</span>.exports = Search = (<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div>
         
       
         
@@ -122,7 +87,7 @@ module.exports = Search = (<span class="hljs-function"><span class="hljs-keyword
 <h4 id="code">Code</h4>
 
         
-          <div class='highlight'><pre>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Search</span><span class="hljs-params">(uri, opts)</span> {</span>
+          <div class='highlight'><pre>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Search</span><span class="hljs-params">(uri, opts)</span> </span>{
     <span class="hljs-keyword">this</span>.uri = uri;
     <span class="hljs-keyword">this</span>.opts = opts;
 
@@ -157,7 +122,7 @@ search.query(q, callback);
 <h4 id="code">Code</h4>
 
         
-          <div class='highlight'><pre>  Search.prototype.query = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(params, callback)</span> {</span>
+          <div class='highlight'><pre>  Search.prototype.query = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(params, callback)</span> </span>{
     <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
 
     <span class="hljs-keyword">if</span> (params.q == <span class="hljs-literal">null</span>) {

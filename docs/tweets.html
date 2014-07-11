@@ -17,41 +17,6 @@
         
 
         
-          <div class="toc">
-            <h3>Table of Contents</h3>
-            <ol>
-              
-                
-                <li>
-                  <a class="source" href="index.html">
-                    index.js
-                  </a>
-                </li>
-              
-                
-                <li>
-                  <a class="source" href="search.html">
-                    search.js
-                  </a>
-                </li>
-              
-                
-                <li>
-                  <a class="source" href="timelines.html">
-                    timelines.js
-                  </a>
-                </li>
-              
-                
-                <li>
-                  <a class="source" href="tweets.html">
-                    tweets.js
-                  </a>
-                </li>
-              
-            </ol>
-          </div>
-        
       </div>
 
       
@@ -82,7 +47,7 @@
         
           <div class='highlight'><pre><span class="hljs-keyword">var</span> Tweets;
 
-module.exports = Tweets = (<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span></pre></div>
+<span class="hljs-built_in">module</span>.exports = Tweets = (<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div>
         
       
         
@@ -95,7 +60,7 @@ module.exports = Tweets = (<span class="hljs-function"><span class="hljs-keyword
         <h4 id="code">Code</h4>
 
         
-          <div class='highlight'><pre>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Tweets</span><span class="hljs-params">(uri, opts)</span> {</span>
+          <div class='highlight'><pre>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Tweets</span><span class="hljs-params">(uri, opts)</span> </span>{
     <span class="hljs-keyword">this</span>.uri = uri;
     <span class="hljs-keyword">this</span>.opts = opts;
 
@@ -128,7 +93,7 @@ module.exports = Tweets = (<span class="hljs-function"><span class="hljs-keyword
 <h4 id="code">Code</h4>
 
         
-          <div class='highlight'><pre>  Tweets.prototype.retweets = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(id, params, callback)</span> {</span>
+          <div class='highlight'><pre>  Tweets.prototype.retweets = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(id, params, callback)</span> </span>{
     <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
 
     <span class="hljs-keyword">if</span> (id == <span class="hljs-literal">null</span>) {
@@ -165,7 +130,7 @@ module.exports = Tweets = (<span class="hljs-function"><span class="hljs-keyword
 <h4 id="code">Code</h4>
 
         
-          <div class='highlight'><pre>  Tweets.prototype.show = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(id, params, callback)</span> {</span>
+          <div class='highlight'><pre>  Tweets.prototype.show = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(id, params, callback)</span> </span>{
     <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
 
     <span class="hljs-keyword">if</span> (id == <span class="hljs-literal">null</span>) {
@@ -202,7 +167,7 @@ parameter.</p>
 <h4 id="code">Code</h4>
 
         
-          <div class='highlight'><pre>  Tweets.prototype.destroy = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(id, params, callback)</span> {</span>
+          <div class='highlight'><pre>  Tweets.prototype.destroy = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(id, params, callback)</span> </span>{
     <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
 
     <span class="hljs-keyword">if</span> (id == <span class="hljs-literal">null</span>) {
@@ -234,7 +199,7 @@ parameter.</p>
 <h4 id="code">Code</h4>
 
         
-          <div class='highlight'><pre>  Tweets.prototype.update = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(params, callback)</span> {</span>
+          <div class='highlight'><pre>  Tweets.prototype.update = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(params, callback)</span> </span>{
     <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
 
     <span class="hljs-keyword">if</span> ((params == <span class="hljs-literal">null</span>) || (params.status == <span class="hljs-literal">null</span>) || (params.status === <span class="hljs-string">''</span>)) {
@@ -269,7 +234,7 @@ parameter.</p>
 <h4 id="code">Code</h4>
 
         
-          <div class='highlight'><pre>  Tweets.prototype.retweet = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(id, params, callback)</span> {</span>
+          <div class='highlight'><pre>  Tweets.prototype.retweet = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(id, params, callback)</span> </span>{
     <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
 
     <span class="hljs-keyword">if</span> (id == <span class="hljs-literal">null</span>) {
@@ -292,7 +257,7 @@ parameter.</p>
         <h4 id="code">Code</h4>
 
         
-          <div class='highlight'><pre>  Tweets.prototype.updateWithMedia = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+          <div class='highlight'><pre>  Tweets.prototype.updateWithMedia = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
     <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
 
     <span class="hljs-comment">/* FIXME: IMPLEMENT! */</span>
@@ -317,7 +282,7 @@ parameter.</p>
 <h4 id="code">Code</h4>
 
         
-          <div class='highlight'><pre>  Tweets.prototype.oembed = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(params, callback)</span> {</span>
+          <div class='highlight'><pre>  Tweets.prototype.oembed = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(params, callback)</span> </span>{
     <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
 
     <span class="hljs-keyword">if</span> ((params.id == <span class="hljs-literal">null</span>) &amp;&amp; (params.url == <span class="hljs-literal">null</span>)) {
@@ -347,7 +312,7 @@ parameter.</p>
 <h4 id="code">Code</h4>
 
         
-          <div class='highlight'><pre>  Tweets.prototype.retweeters = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(params, callback)</span> {</span>
+          <div class='highlight'><pre>  Tweets.prototype.retweeters = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(params, callback)</span> </span>{
     <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
 
     <span class="hljs-keyword">if</span> (params.id == <span class="hljs-literal">null</span>) {

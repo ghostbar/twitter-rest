@@ -17,41 +17,6 @@
         
 
         
-          <div class="toc">
-            <h3>Table of Contents</h3>
-            <ol>
-              
-                
-                <li>
-                  <a class="source" href="index.html">
-                    index.js
-                  </a>
-                </li>
-              
-                
-                <li>
-                  <a class="source" href="search.html">
-                    search.js
-                  </a>
-                </li>
-              
-                
-                <li>
-                  <a class="source" href="timelines.html">
-                    timelines.js
-                  </a>
-                </li>
-              
-                
-                <li>
-                  <a class="source" href="tweets.html">
-                    tweets.js
-                  </a>
-                </li>
-              
-            </ol>
-          </div>
-        
       </div>
 
       
@@ -116,7 +81,7 @@ itself)</li>
 <h4 id="code">Code</h4>
 
         
-          <div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Timelines</span><span class="hljs-params">(uri, opts)</span> {</span>
+          <div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Timelines</span><span class="hljs-params">(uri, opts)</span> </span>{
   <span class="hljs-keyword">this</span>.uri = uri;
   <span class="hljs-keyword">this</span>.opts = opts;
 
@@ -152,17 +117,17 @@ itself)</li>
 (otherwise just <code>null</code>) and an Array with tweets as second parameter.</p>
 <h4 id="example">Example</h4>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> params = { count: <span class="hljs-number">1</span> };
-timeline.mentions(params, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(err, res)</span> {</span>
+timeline.mentions(params, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(err, res)</span> </span>{
   <span class="hljs-keyword">if</span> (err)
     <span class="hljs-keyword">throw</span> err;
 
-  console.log(res);
+  <span class="hljs-built_in">console</span>.log(res);
 });
 </code></pre>
 <h4 id="code">Code</h4>
 
         
-          <div class='highlight'><pre>Timelines.prototype.mentions = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(params, callback)</span> {</span>
+          <div class='highlight'><pre>Timelines.prototype.mentions = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(params, callback)</span> </span>{
   <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
 
   <span class="hljs-keyword">if</span> (params == <span class="hljs-literal">null</span>)
@@ -201,17 +166,17 @@ timeline.mentions(params, <span class="hljs-function"><span class="hljs-keyword"
 <h4 id="example">Example</h4>
 <pre><code class="lang-js">timeline.user({
   screen_name: <span class="hljs-string">'random'</span>
-}, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(err, res)</span> {</span>
+}, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(err, res)</span> </span>{
   <span class="hljs-keyword">if</span> (err)
     <span class="hljs-keyword">throw</span> err;
 
-  console.log(res);
+  <span class="hljs-built_in">console</span>.log(res);
 });
 </code></pre>
 <h4 id="code">Code</h4>
 
         
-          <div class='highlight'><pre>Timelines.prototype.user = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(params, callback)</span> {</span>
+          <div class='highlight'><pre>Timelines.prototype.user = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(params, callback)</span> </span>{
   <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
 
   <span class="hljs-keyword">if</span> ((params.screen_name == <span class="hljs-literal">null</span>) &amp;&amp; (params.user_id == <span class="hljs-literal">null</span>)) {
@@ -250,17 +215,17 @@ timeline.mentions(params, <span class="hljs-function"><span class="hljs-keyword"
 <p>Returns a callback with an Error object as first parameter if there was any
 (otherwise just <code>null</code>) and an Array with tweets as second parameter.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">timeline.home(<span class="hljs-literal">null</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(err, res)</span> {</span>
+<pre><code class="lang-js">timeline.home(<span class="hljs-literal">null</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(err, res)</span> </span>{
   <span class="hljs-keyword">if</span> (err)
     <span class="hljs-keyword">throw</span> err;
 
-  console.log(res);
+  <span class="hljs-built_in">console</span>.log(res);
 });
 </code></pre>
 <h4 id="code">Code</h4>
 
         
-          <div class='highlight'><pre>Timelines.prototype.home = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(params, callback)</span> {</span>
+          <div class='highlight'><pre>Timelines.prototype.home = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(params, callback)</span> </span>{
   <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
 
   <span class="hljs-keyword">if</span> (params == <span class="hljs-literal">null</span>)
@@ -295,17 +260,17 @@ timeline.mentions(params, <span class="hljs-function"><span class="hljs-keyword"
 <p>Returns a callback with an Error object as first parameter if there was any
 (otherwise just <code>null</code>) and an Array with tweets as second parameter.</p>
 <h4 id="example">Example</h4>
-<pre><code class="lang-js">timeline.retweets({}, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(err, response)</span> {</span>
+<pre><code class="lang-js">timeline.retweets({}, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(err, response)</span> </span>{
   <span class="hljs-keyword">if</span> (err)
     <span class="hljs-keyword">throw</span> err;
 
-  console.log(response);
+  <span class="hljs-built_in">console</span>.log(response);
 });
 </code></pre>
 <h4 id="code">Code</h4>
 
         
-          <div class='highlight'><pre>Timelines.prototype.retweets = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(params, callback)</span> {</span>
+          <div class='highlight'><pre>Timelines.prototype.retweets = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(params, callback)</span> </span>{
   <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
 
   <span class="hljs-keyword">if</span> (params == <span class="hljs-literal">null</span>)
@@ -314,7 +279,7 @@ timeline.mentions(params, <span class="hljs-function"><span class="hljs-keyword"
   self.api.get(<span class="hljs-string">'/statuses/retweets_of_me.json'</span>, params, callback);
 };
 
-module.exports = Timelines;</pre></div>
+<span class="hljs-built_in">module</span>.exports = Timelines;</pre></div>
         
       
       <div class="fleur">h</div>
