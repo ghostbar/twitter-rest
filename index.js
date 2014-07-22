@@ -1,3 +1,4 @@
+'use strict';
 //
 // twitter-rest
 // ============
@@ -9,13 +10,13 @@
 //
 
 
-var ttLite = require('twitter-rest-lite'),
-    Timelines = require('./lib/timelines'),
-    Tweets = require('./lib/tweets'),
-    Search = require('./lib/search'),
-    uri = {
-      base: 'https://api.twitter.com/1.1',
-      search: 'https://api.twitter.com/1.1/search'
+var ttLite = require('twitter-rest-lite');
+var Timelines = require('./lib/timelines');
+var Tweets = require('./lib/tweets');
+var Search = require('./lib/search');
+var uri = {
+  base: 'https://api.twitter.com/1.1',
+  search: 'https://api.twitter.com/1.1/search'
 };
 
 //
@@ -70,7 +71,7 @@ module.exports = function(opts) {
     Timelines: new Timelines(uri, opts),
     Tweets: new Tweets(uri, opts),
     Search: new Search(uri, opts)
-  }
+  };
 };
 
 module.exports.OAuth = function(opts) {
