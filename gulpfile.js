@@ -5,6 +5,7 @@ var mocha = require('gulp-mocha');
 var docco = require('gulp-docco');
 var subtree = require('gulp-subtree');
 var rimraf = require('gulp-rimraf');
+var cover = require('gulp-coverage');
 
 var exec = require('child_process').exec;
 
@@ -36,10 +37,31 @@ gulp.task('test-net', function () {
     .pipe(mocha(opts.mocha));
 });
 
+function coverage (tests, output) {
+  return gulp
+  .src(tests, {read: false})
+  .pipe(cover.instrument({
+    pattern: ['index.js', 'lib/**.js'],
+    debugDirectory: 'debug'
+  }))
+  .pipe(mocha(opts.mocha))
+  .pipe(cover.report({
+    outFile: output
+  }));
+}
+
+gulp.task('coverage', function () {
+  return coverage(['test/*test-*.js'], 'coverage.html');
+});
+
+gulp.task('nonet-coverage', function () {
+  return coverage(['test/test-*.js'], 'nonet-coverage.html');
+});
+
 gulp.task('watch', function () {
   var watcher = gulp.watch(['index.js', 'lib/**', 'test/**'], ['test']);
   watcher.on('change', function(event) {
-      console.log('File '+event.path+' was '+event.type+', running tasks...');
+    console.log('File '+event.path+' was '+event.type+', running tasks...');
   });
 });
 
