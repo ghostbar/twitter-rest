@@ -51,11 +51,11 @@ function coverage (tests, output) {
 }
 
 gulp.task('coverage', function () {
-  return coverage(['test/*test-*.js'], 'coverage.html');
+  return coverage(['test/*test-*.js'], 'test/coverage.html');
 });
 
 gulp.task('nonet-coverage', function () {
-  return coverage(['test/test-*.js'], 'nonet-coverage.html');
+  return coverage(['test/test-*.js'], 'test/nonet-coverage.html');
 });
 
 gulp.task('watch', function () {
@@ -86,8 +86,7 @@ gulp.task('publish-docs', function () {
     .pipe(subtree({
       remote: 'github',
       message: 'Updating docs'
-    }))
-    .pipe(rimraf());
+    }));
 });
 
 gulp.task('docs', ['clean-docs', 'make-docs', 'publish-docs']);
