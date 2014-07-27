@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "request": "~2.33.0",
-    "twitter-rest-lite": "~0.3.7"
+    "twitter-rest-lite": "~0.3.8"
   },
   "devDependencies": {
     "gulp": "^3.8.6",
