@@ -14,6 +14,7 @@ var ttLite = require('twitter-rest-lite');
 var Timelines = require('./lib/timelines');
 var Tweets = require('./lib/tweets');
 var Search = require('./lib/search');
+var DirectMessages = require('./lib/direct_messages');
 var uri = {
   base: 'https://api.twitter.com/1.1',
   search: 'https://api.twitter.com/1.1/search'
@@ -70,7 +71,8 @@ module.exports = function(opts) {
     OAuth: new ttLite.OAuth(uri, opts),
     Timelines: new Timelines(uri, opts),
     Tweets: new Tweets(uri, opts),
-    Search: new Search(uri, opts)
+    Search: new Search(uri, opts),
+    DirectMessages: new DirectMessages(uri, opts)
   };
 };
 
@@ -92,4 +94,8 @@ module.exports.Tweets = function(opts) {
 
 module.exports.Search = function(opts) {
   return new Search(uri, opts);
+};
+
+module.exports.DirectMessages = function(opts) {
+  return new DirectMessages(uri, opts);
 };
