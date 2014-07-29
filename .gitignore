@@ -3,3 +3,4 @@ test/config.json
 .coverdata
 .coverrun
 debug
+*.swp
