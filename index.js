@@ -55,6 +55,7 @@ var uri = {
 // + Timelines
 // + Tweets
 // + Search
+// + DirectMessages
 //
 // Parameters to initialize any of the Objects/Modules
 // ---------------------------------------------------
