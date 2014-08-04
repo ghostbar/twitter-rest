@@ -1,4 +1,4 @@
-twitter-rest
+twitter-rest [![Code Climate](https://codeclimate.com/github/ghostbar/twitter-rest/badges/gpa.svg)](https://codeclimate.com/github/ghostbar/twitter-rest)
 ============
 
 Twitter's REST library for Node.js.
